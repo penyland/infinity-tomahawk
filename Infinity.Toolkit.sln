@@ -5,6 +5,10 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infinity.Toolkit", "src\Infinity.Toolkit\Infinity.Toolkit.csproj", "{16C56631-28E6-4254-B248-61D0D8F338FB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FE5B1A6C-B3A0-4074-81FD-F799A031102F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infinity.Toolkit.FeatureModule.AspireDashboard", "src\Infinity.Toolkit.FeatureModule.AspireDashboard\Infinity.Toolkit.FeatureModule.AspireDashboard.csproj", "{E5A62759-51CF-413A-84E7-C4D3719A2CC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,17 @@ Global
 		{16C56631-28E6-4254-B248-61D0D8F338FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16C56631-28E6-4254-B248-61D0D8F338FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16C56631-28E6-4254-B248-61D0D8F338FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5A62759-51CF-413A-84E7-C4D3719A2CC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A62759-51CF-413A-84E7-C4D3719A2CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5A62759-51CF-413A-84E7-C4D3719A2CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5A62759-51CF-413A-84E7-C4D3719A2CC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16C56631-28E6-4254-B248-61D0D8F338FB} = {FE5B1A6C-B3A0-4074-81FD-F799A031102F}
+		{E5A62759-51CF-413A-84E7-C4D3719A2CC3} = {FE5B1A6C-B3A0-4074-81FD-F799A031102F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {554AD750-3673-46A0-B2BA-8A2B8A7B4569}
