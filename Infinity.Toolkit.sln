@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FE5B1A6C-B3A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infinity.Toolkit.FeatureModule.AspireDashboard", "src\Infinity.Toolkit.FeatureModule.AspireDashboard\Infinity.Toolkit.FeatureModule.AspireDashboard.csproj", "{E5A62759-51CF-413A-84E7-C4D3719A2CC3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{A31392E4-ACF8-49A8-98DD-C36049BF172F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blazor", "samples\blazor\blazor.csproj", "{047ACF1A-CD16-4043-B59F-7FA39B9141B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,10 @@ Global
 		{E5A62759-51CF-413A-84E7-C4D3719A2CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5A62759-51CF-413A-84E7-C4D3719A2CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5A62759-51CF-413A-84E7-C4D3719A2CC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{047ACF1A-CD16-4043-B59F-7FA39B9141B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{047ACF1A-CD16-4043-B59F-7FA39B9141B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{047ACF1A-CD16-4043-B59F-7FA39B9141B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{047ACF1A-CD16-4043-B59F-7FA39B9141B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{16C56631-28E6-4254-B248-61D0D8F338FB} = {FE5B1A6C-B3A0-4074-81FD-F799A031102F}
 		{E5A62759-51CF-413A-84E7-C4D3719A2CC3} = {FE5B1A6C-B3A0-4074-81FD-F799A031102F}
+		{047ACF1A-CD16-4043-B59F-7FA39B9141B3} = {A31392E4-ACF8-49A8-98DD-C36049BF172F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {554AD750-3673-46A0-B2BA-8A2B8A7B4569}
