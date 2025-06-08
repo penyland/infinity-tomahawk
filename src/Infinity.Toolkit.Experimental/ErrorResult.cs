@@ -1,15 +1,16 @@
-﻿namespace Infinity.Toolkit.Experimental;
+﻿
+namespace Infinity.Toolkit.Experimental;
 
 public class ErrorResult : Result, Failure
 {
     public ErrorResult(Error error)
+        : this(error.Details, [error])
     {
-        Errors = [error];
-        Message = error.Details;
+        Succeeded = false;
     }
 
     public ErrorResult(string message)
-        : this(message, [])
+        : this(message, [new(message)])
     {
     }
 
@@ -21,44 +22,60 @@ public class ErrorResult : Result, Failure
     }
 
     public ErrorResult(IReadOnlyCollection<Error> errors)
+        : this(string.Empty, errors)
     {
-        Succeeded = false;
-        Errors = errors;
+    }
+
+    public ErrorResult(Exception exception)
+        : this(exception.Message, [new ExceptionError(string.Empty, exception.Message, exception)])
+    {
     }
 
     public string Message { get; }
-
-    public IReadOnlyCollection<Error> Errors { get; }
 }
+
 public class ErrorResult<T> : Result<T>, Failure
 {
     public ErrorResult(Error error)
-        : base(error)
+        : base(default!, [error])
     {
-        Errors = [error];
-        Message = error.Details;
     }
 
     public ErrorResult(string message)
-        : this(message, [])
+        : base(default!, [new Error(message)])
     {
+        Message = message;
     }
 
     public ErrorResult(string message, IReadOnlyCollection<Error> errors)
-        : base(new Error(message))
+        : base(default!, errors)
     {
         Message = message;
         Succeeded = false;
         Errors = errors ?? [];
     }
 
-    public string Message { get; set; }
+    public ErrorResult(IReadOnlyCollection<Error> errors)
+        : base(default!, errors)
+    {
+        Succeeded = false;
+        Errors = errors;
+    }
 
-    public IReadOnlyCollection<Error> Errors { get; }
+    public ErrorResult(Exception exception)
+        : base(default!, [new ExceptionError(exception.GetType().Name, exception.Message, exception)])
+    {
+        Succeeded = false;
+        Message = exception.Message;
+    }
+
+    public string Message { get; }
 }
 
 public class Error(string code, string details)
 {
+    public static readonly Error None = new("No error occurred.");
+
     public Error(string details)
         : this(string.Empty, details)
     {
@@ -67,7 +84,11 @@ public class Error(string code, string details)
     public string Code { get; } = code ?? string.Empty;
 
     public string Details { get; } = details;
+}
 
-    // Result result = new Error("Failed to update message");
-    public static implicit operator Result(Error error) => new ErrorResult(error);
+public class ExceptionError(string code, string details, Exception exception) : Error(code, details)
+{
+    public Exception Exception { get; } = exception ?? throw new ArgumentNullException(nameof(exception));
+
+    public static implicit operator ExceptionError(Exception exception) => new(exception.GetType().Name, exception.Message, exception);
 }
