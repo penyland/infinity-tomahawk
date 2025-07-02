@@ -10,10 +10,6 @@ public abstract class Result
 
     public static Result Success() => new SuccessResult();
 
-    public static Result<T> Ok<T>(T value) => new SuccessResult<T>(value);
-
-    public static Result<T> Success<T>(T data) => new SuccessResult<T>(data);
-
     public static Result<T> Success<T>() => new SuccessResult<T>();
 
     public static Result Failure(string message) => new ErrorResult(message);
@@ -96,6 +92,10 @@ public abstract class Result<T> : Result
         set => this.value = value;
     }
 
+    public static Result<T> Success(T value) => new SuccessResult<T>(value);
+
+    public static Result<T> Failure(T value) => new ErrorResult<T>(value);
+
     public static Result<T> Failure(Result<T> result, Error error)
     {
         if (result is ErrorResult<T> errorResult)
@@ -112,11 +112,21 @@ public abstract class Result<T> : Result
     public static implicit operator Result<T>(Exception exception) => new ErrorResult<T>(exception);
 
     public static implicit operator T(Result<T> result) => result.Value;
+}
 
-    public TResult Switch<TResult>(Func<T, TResult> onSuccess, Func<IReadOnlyCollection<Error>, TResult> onFailure)
+public abstract class Result<T, TError> : Result<T>
+    where TError : Error
+{
+    protected Result(T value, IReadOnlyCollection<TError> errors)
+        : base(value, errors)
     {
-        return Succeeded ? onSuccess(Value!) : onFailure(Errors);
     }
+
+    //public static Result<T, TError> Success(T value) => new SuccessResult<T, TError>(value);
+
+    //public static Result<T, TError> Failure(TError error) => new ErrorResult<T, TError>(error);
+
+    public static implicit operator Result<T, TError>(T value) => new SuccessResult<T, TError>(value);
 }
 
 #pragma warning disable SA1302 // Interface names should begin with I

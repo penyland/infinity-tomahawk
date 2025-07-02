@@ -36,6 +36,12 @@ public class ErrorResult : Result, Failure
 
 public class ErrorResult<T> : Result<T>, Failure
 {
+    public ErrorResult(T value) 
+        : base(value, [])
+    {
+        Succeeded = false;
+    }
+
     public ErrorResult(Error error)
         : base(default!, [error])
     {
@@ -72,23 +78,25 @@ public class ErrorResult<T> : Result<T>, Failure
     public string Message { get; }
 }
 
-public class Error(string code, string details)
+public class ErrorResult<T, TError> : ErrorResult<T>, Failure
+    where TError : Error
 {
-    public static readonly Error None = new("No error occurred.");
-
-    public Error(string details)
-        : this(string.Empty, details)
+    public ErrorResult(TError error)
+        : base([error])
     {
+        Succeeded = false;
     }
 
-    public string Code { get; } = code ?? string.Empty;
-
-    public string Details { get; } = details;
-}
-
-public class ExceptionError(string code, string details, Exception exception) : Error(code, details)
-{
-    public Exception Exception { get; } = exception ?? throw new ArgumentNullException(nameof(exception));
-
-    public static implicit operator ExceptionError(Exception exception) => new(exception.GetType().Name, exception.Message, exception);
+    //public ErrorResult(TError error)
+    //    : base(default!, [error])
+    //{
+    //}
+    //public ErrorResult(string message, IReadOnlyCollection<TError> errors)
+    //    : base(default!, errors)
+    //{
+    //    Message = message;
+    //    Succeeded = false;
+    //    Errors = errors ?? [];
+    //}
+    //public string Message { get; }
 }

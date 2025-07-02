@@ -15,3 +15,9 @@ public class SuccessResult<T> : Result<T>, Success
     public SuccessResult(T data)
         : base(data, []) => Succeeded = true;
 }
+
+public class SuccessResult<T, TError> : Result<T, TError>, Success
+    where TError : Error
+{
+    public SuccessResult(T data) : base(data, []) => Succeeded = true;
+}
